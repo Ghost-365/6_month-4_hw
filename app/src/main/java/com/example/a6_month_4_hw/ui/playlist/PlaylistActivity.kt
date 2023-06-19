@@ -7,15 +7,16 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.a6_month_4_hw.core.base.BaseActivity
 import com.example.a6_month_4_hw.core.ext.CheckConnection
 import com.example.a6_month_4_hw.databinding.ActivityPlaylistBinding
-import com.example.a6_month_4_hw.databinding.CheckInternetBinding
 import com.example.a6_month_4_hw.model.Item
 import com.example.a6_month_4_hw.ui.detail.DetailActivity
+import com.example.a6_month_4_hw.ui.playlist.adapter.PlaylistAdapter
 
-class PlaylistActivity : BaseActivity<ActivityPlaylistBinding>() {
+class PlaylistActivity : BaseActivity<ActivityPlaylistBinding, PlaylistViewModel>() {
 
-    private val viewModel: PlaylistViewModel by lazy {
+    override val viewModel: PlaylistViewModel by lazy {
         ViewModelProvider(this)[PlaylistViewModel::class.java]
     }
+
 
     override fun checkInternet() {
         super.checkInternet()

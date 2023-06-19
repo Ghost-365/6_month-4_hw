@@ -1,10 +1,11 @@
-package com.example.a6_month_4_hw.ui.playlist
+package com.example.a6_month_4_hw.ui.playlist.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.a6_month_4_hw.R
 import com.example.a6_month_4_hw.databinding.ItemPlaylistsBinding
 import com.example.a6_month_4_hw.model.Item
 
@@ -38,13 +39,16 @@ class PlaylistAdapter(private val onClick: (Item) -> Unit) :
     inner class PlaylistViewHolder(private val binding: ItemPlaylistsBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(item: Item?) {
-            binding.image.load(item?.snippet?.thumbnails?.standard?.url)
-            binding.tvTitle.text = item?.snippet?.title
-            binding.tvVideo.text = "${item?.contentDetails?.itemCount} video"
 
-            itemView.setOnClickListener {
-                onClick.invoke(item!!)
+        fun bind(item: Item?) {
+            with(binding) {
+                image.load(item?.snippet?.thumbnails?.standard?.url)
+                tvTitle.text = item?.snippet?.title
+                tvVideo.text = item?.contentDetails?.itemCount.toString()
+
+                itemView.setOnClickListener {
+                    onClick.invoke(item!!)
+                }
             }
         }
     }

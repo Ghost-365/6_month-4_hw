@@ -1,32 +1,34 @@
 package com.example.a6_month_4_hw.core.base
 
-    import android.os.Bundle
-    import androidx.appcompat.app.AppCompatActivity
-    import androidx.viewbinding.ViewBinding
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.viewbinding.ViewBinding
 
-    abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
+abstract class BaseActivity<VB : ViewBinding, VM : BaseViewModel> : AppCompatActivity() {
 
-        protected lateinit var binding: VB
+    protected lateinit var binding: VB
 
-        protected abstract fun inflateViewBinding(): VB
+    protected abstract val viewModel: VM
 
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-            binding = inflateViewBinding()
-            setContentView(binding.root)
+    protected abstract fun inflateViewBinding(): VB
 
-            checkInternet()
-            setUI()
-            setupLiveData()
-            initClickListener()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = inflateViewBinding()
+        setContentView(binding.root)
 
-        }
+        checkInternet()
+        setUI()
+        setupLiveData()
+        initClickListener()
 
-        open fun setupLiveData() {}
-
-        open fun setUI() {}
-
-        open fun initClickListener() {}
-
-        open fun checkInternet() {}
     }
+
+    open fun setupLiveData() {}
+
+    open fun setUI() {}
+
+    open fun initClickListener() {}
+
+    open fun checkInternet() {}
+}

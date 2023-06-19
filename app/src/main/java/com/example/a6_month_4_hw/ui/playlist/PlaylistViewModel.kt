@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.a6_month_4_hw.BuildConfig
+import com.example.a6_month_4_hw.core.base.BaseViewModel
 import com.example.a6_month_4_hw.model.Playlist
 import com.example.a6_month_4_hw.remote.ApiService
 import com.example.a6_month_4_hw.remote.RetrofitClient
@@ -11,7 +12,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class PlaylistViewModel : ViewModel() {
+class PlaylistViewModel : BaseViewModel() {
 
     private val apiService: ApiService = RetrofitClient.create()
 
